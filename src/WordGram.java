@@ -22,11 +22,19 @@ public class WordGram {
 	 * @param size Number of elements in WordGram object
 	 */
 	public WordGram(String[] source, int start, int size) {
-		// TODO correctly implement constructor
 		myWords = new String[size];
 		for(int k=0; k < size; k++) {
 			myWords[k] = "hello";
 		}
+		myToString = "";
+		myHash = -1;
+	}
+
+	public String wordAt(int index) {
+		if (index < 0 || index >= myWords.length) {
+			throw new IndexOutOfBoundsException("bad index in wordAt "+index);
+		}
+		return myWords[index];
 	}
 
 	/**
@@ -48,8 +56,15 @@ public class WordGram {
 			return false;
 		}
 		WordGram other = (WordGram) o;
-		// TODO complete correct implementation of equals (above is correct)
-		return false;
+		if (this.length() != other.length()){
+			return false;
+		}
+		for (int i = 0; i < myWords.length; i++) {
+			if (!myWords[i].equals(other.wordAt(i))) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 
@@ -60,8 +75,10 @@ public class WordGram {
 	 */
 	@Override
 	public int hashCode() {
-		// TODO correctly implement hashCode
-		return 0;
+		if (myHash == -1) {
+			myHash = this.toString().hashCode();
+		}
+		return myHash;
 	}
 
 
@@ -74,9 +91,12 @@ public class WordGram {
 	 * @return new WordGram
 	 */
 	public WordGram shiftAdd(String last) {
-		// TODO correctly implement shiftAdd
-		WordGram wg = new WordGram(myWords, 0, length());
-		return wg;
+		String[] newWords = new String[myWords.length];
+		for (int i = 0; i < myWords.length - 1; i++) {
+			newWords[i] = myWords[i+1];
+		}
+		newWords[myWords.length-1] = last;
+    	return new WordGram(newWords, 0, newWords.length);
 	}
 
 
@@ -86,7 +106,9 @@ public class WordGram {
 	 */
 	@Override
 	public String toString() {
-		// TODO correctly implement toString
-		return "";
+		if(myToString.equals("")){
+			myToString = String.join(" ", myWords);
+		}
+		return myToString;
 	}
 }
