@@ -34,8 +34,7 @@ public class WordGram {
 	 * @return order of wordgram, number of words
 	 */
 	public int length() {
-		// TODO correctly implement length 
-		return 0;
+		return myWords.length;
 	}
 
 
