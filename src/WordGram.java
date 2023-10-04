@@ -24,7 +24,7 @@ public class WordGram {
 	public WordGram(String[] source, int start, int size) {
 		myWords = new String[size];
 		for(int k=0; k < size; k++) {
-			myWords[k] = "hello";
+			myWords[k] = source[start + k];
 		}
 		myToString = "";
 		myHash = -1;

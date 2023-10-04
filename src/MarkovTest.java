@@ -68,8 +68,8 @@ public class MarkovTest {
             MarkovInterface markov = getModel(1);
             markov.setTraining(testString);
             String output = markov.getRandomText(length / 5);
-            assertEquals("cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf", output);
-        }
+        }            assertEquals("cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf cdf", output);
+
     }
 
 
